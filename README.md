@@ -35,12 +35,13 @@ Wikipedia Search: Ask Vlexa to search for any information on Wikipedia. It will 
 
 ```bash
 git clone https://github.com/Anshu-Gondi/Vlexa-Voice-Assistant-project.git
+```
 
 ## Install the Required Python Libraries:
 
 ```bash
 pip install -r requirement.txt
-
+```
 
 # Setup Edge WebDriver
 Download and install the Edge WebDriver.
@@ -51,8 +52,8 @@ Replace the placeholder in the NewsSearcher class in selenium_web.py with your A
 # Run the Application
 To start interacting with Vlexa, run:
 
-bash
-Copy code
+```bash
 python main.py
+```
 # Author
 This project is developed and maintained by **Anshu Gondi**.

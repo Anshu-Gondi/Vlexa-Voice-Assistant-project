@@ -44,11 +44,11 @@ pip install -r requirement.txt
 ```
 
 # Setup Edge WebDriver
-Download and install the Edge WebDriver.
-Set the correct path to msedgedriver.exe in the selenium_web.py file.
-Get NewsAPI Key
-Get an API key from NewsAPI.
-Replace the placeholder in the NewsSearcher class in selenium_web.py with your API key.
+- **Download and install the Edge WebDriver.**
+- **Set the correct path to msedgedriver.exe in the selenium_web.py file.**
+- **Get NewsAPI Key**
+- **Get an API key from NewsAPI.**
+- **Replace the placeholder in the NewsSearcher class in selenium_web.py with your API key.**
 # Run the Application
 To start interacting with Vlexa, run:
 

@@ -1,6 +1,6 @@
 import pyttsx3 as p
 import speech_recognition as sr
-from selenium_web import WikipediaSearcher, YouTubeSearcher, NewsSearcher, JokeSearcher, GoogleSearcher
+from selenium_web import WikipediaSearcher, YouTubeSearcher, NewsSearcher, JokeSearcher
 from randfacts import get_fact  # Import get_fact directly to use it easily
 
 # Initialize the speech engine
@@ -49,7 +49,7 @@ while True:
     if action:
         action = action.lower()  # Normalize input
 
-        elif "youtube" in action:
+        if "youtube" in action:
             speak("What YouTube video would you like to search for?", 'excited')
             query = recognize_speech()
             if query:

@@ -11,6 +11,33 @@ from bs4 import BeautifulSoup  # Import BeautifulSoup for web scraping
 # Use this If you want to avoid manually managing the WebDriver binaries, you can use webdriver-manager
 # from webdriver_manager.microsoft import EdgeChromiumDriverManager  # then Add this import
 
+class GoogleSearcher:
+    def __init__(self):
+        edge_driver_path = r'C:\Drivers\Driver_Notes\msedgedriver.exe'  # Set your path
+        edge_options = Options()
+        edge_options.add_argument('log-level=3')  # Suppress all but fatal errors
+        service = Service(edge_driver_path)
+        self.driver = webdriver.Edge(service=service, options=edge_options)
+        # self.driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=edge_options)  # Uncomment if using WebDriverManager
+
+    def search(self, query):
+        """Searches the query on Google and displays the results."""
+        try:
+            self.driver.get('https://www.google.com')
+            wait = WebDriverWait(self.driver, 20)
+
+            # Find the Google search box, enter the query, and press Enter
+            search_box = wait.until(EC.presence_of_element_located((By.NAME, 'q')))
+            search_box.send_keys(query)
+            search_box.submit()
+
+            print("Search complete. Check the browser for results.")
+        except Exception as e:
+            print(f"An error occurred while performing the Google search: {e}")
+        finally:
+            input("Press Enter to close the browser...")
+            self.driver.quit()  # Ensure the browser is closed after the task
+
 class WikipediaSearcher:
     def __init__(self):
         self.wiki_wiki = wikipediaapi.Wikipedia(

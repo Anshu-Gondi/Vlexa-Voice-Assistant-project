@@ -1,7 +1,7 @@
 import pyttsx3 as p
 import speech_recognition as sr
 from selenium_web import WikipediaSearcher, YouTubeSearcher, NewsSearcher, JokeSearcher, GoogleSearcher
-from randfacts import *
+from randfacts import get_fact  # Import get_fact directly to use it easily
 
 # Initialize the speech engine
 engine = p.init()
@@ -40,9 +40,8 @@ def recognize_speech():
 # Start Vlexa interaction
 speak("Hello, my name is Vlexa, and I am your Assistant. How can I help you today?")
 
-# Initialize JokeSearcher
+# Initialize searcher instances
 joke_searcher = JokeSearcher()
-# Initialize the GoogleSearcher
 google_searcher = GoogleSearcher()
 
 while True:
@@ -50,14 +49,7 @@ while True:
     if action:
         action = action.lower()  # Normalize input
 
-        if "google" in action:
-            query = action.replace("google", "").strip()
-            if query:
-                google_searcher.search(query)
-            else:
-                speak("Please tell me what to search on Google.", 'neutral')
-
-        if "youtube" in action:
+        elif "youtube" in action:
             speak("What YouTube video would you like to search for?", 'excited')
             query = recognize_speech()
             if query:
@@ -82,17 +74,17 @@ while True:
             query = recognize_speech()
             if query:
                 speak(f"Fetching the latest news about {query}", 'neutral')
-                news_searcher = NewsSearcher(speak)  # Pass the speak function
+                news_searcher = NewsSearcher(speak)  # Pass the speak function to read articles
                 news_searcher.get_news(query)
             else:
                 speak("I didn't catch that. Please try again.", 'calm')
 
-        elif "facts" or "fact" in action:
-            speak("Sure Sir ,")
-            x = randfacts.get_fact()
-            print(x)
-            speak("Did you know that, " +x)
-        
+        elif "fact" in action:
+            speak("Sure, here's an interesting fact!")
+            fact = get_fact()
+            print(fact)
+            speak(f"Did you know that {fact}")
+
         elif "joke" in action:
             speak("Let me tell you a joke.", 'excited')
             joke = joke_searcher.fetch_joke()
@@ -105,11 +97,10 @@ while True:
             joke_searcher.stop()
             speak("I have stopped fetching jokes.", 'calm')
 
-
-        elif "how are you" or "how r u" in action:
+        elif "how are you" in action or "how r u" in action:
             speak("I'm just a program, but I'm here to help you!", 'neutral')
 
-        elif "thank you" or "thanks" or "thank u" in action:
+        elif "thank you" in action or "thanks" in action or "thank u" in action:
             speak("You're welcome! If you need anything else, just ask!", 'neutral')
 
         else:

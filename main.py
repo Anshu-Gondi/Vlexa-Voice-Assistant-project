@@ -42,7 +42,6 @@ speak("Hello, my name is Vlexa, and I am your Assistant. How can I help you toda
 
 # Initialize searcher instances
 joke_searcher = JokeSearcher()
-google_searcher = GoogleSearcher()
 
 while True:
     action = recognize_speech()
